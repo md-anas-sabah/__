@@ -1,101 +1,88 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
-  HiPlus,
-  HiOutlineLogout,
-  HiOutlineChat,
-  HiOutlineCog,
-  HiOutlineX,
-} from "react-icons/hi";
+  ChevronUp,
+  ChevronDown,
+  MessageSquare,
+  FolderClosed,
+  PlusCircle,
+  Menu,
+} from "lucide-react";
 
-const Sidebar = ({
-  chats,
-  currentChat,
-  setCurrentChat,
-  createNewChat,
-  onLogout,
-  isMobileOpen,
-  toggleMobileSidebar,
-}) => {
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+function Sidebar() {
+  const [expanded, setExpanded] = useState(true);
+
+  const recentChats = [
+    "Comparing Gulp Build Scripts for ...",
+    "Comparing Files to Identify Missin...",
+    "Fixing Multer Disk Storage Bug",
+    "Frontend Replica of Claude Chat In...",
+    "Frontend Contract Assignment at ...",
+    "Java Compilation Error: Exceptionl...",
+    "Untitled",
+    "React Facebook Login Button Com...",
+    "SQL Query to Join ACR Tables",
+    "Vue.js Facebook Connect Button C...",
+    "Vue.js Facebook Connect Button C...",
+    "Untitled",
+    "Potential Bugs in React Codebase",
+    "Responsive Flexbox Layout for Dat...",
+    "Interchanging Box Positions in Fle...",
+  ];
 
   return (
-    <>
-      {/* Mobile overlay */}
-      {isMobileOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
-          onClick={toggleMobileSidebar}
-        />
-      )}
+    <div className="w-64 border-r border-zinc-800 flex flex-col">
+      <div className="p-3 border-b border-zinc-800 flex items-center">
+        <Menu className="w-5 h-5 mr-2 text-zinc-400" />
+        <span className="text-xl font-medium">Claude</span>
+      </div>
 
-      {/* Sidebar */}
-      <div
-        className={`fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-30 transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${
-          isMobileOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="flex flex-col h-full">
-          {/* New Chat Button */}
-          <div className="p-4">
-            <button
-              onClick={createNewChat}
-              className="flex items-center justify-center w-full py-2 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-md transition-colors"
-            >
-              <HiPlus className="mr-2" />
-              New chat
-            </button>
-          </div>
-
-          {/* Close button (mobile only) */}
-          <button
-            className="absolute top-4 right-4 lg:hidden text-gray-500 hover:text-gray-700"
-            onClick={toggleMobileSidebar}
-          >
-            <HiOutlineX className="h-5 w-5" />
-          </button>
-
-          {/* Chat List */}
-          <div className="flex-1 overflow-y-auto px-3 py-2">
-            <div className="space-y-1">
-              {chats.map((chat) => (
-                <button
-                  key={chat.id}
-                  onClick={() => setCurrentChat(chat)}
-                  className={`flex items-center w-full px-3 py-2 text-left rounded-md ${
-                    currentChat && currentChat.id === chat.id
-                      ? "bg-primary-100 text-primary-800"
-                      : "hover:bg-gray-100"
-                  }`}
-                >
-                  <HiOutlineChat className="mr-2 h-5 w-5 text-gray-500" />
-                  <span className="truncate">{chat.title}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div className="p-4 border-t border-gray-200">
-            <button
-              onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-              className="flex items-center px-3 py-2 w-full text-left text-gray-700 hover:bg-gray-100 rounded-md"
-            >
-              <HiOutlineCog className="mr-2 h-5 w-5" />
-              <span>Settings</span>
-            </button>
-
-            <button
-              onClick={onLogout}
-              className="flex items-center px-3 py-2 w-full text-left text-gray-700 hover:bg-gray-100 rounded-md mt-2"
-            >
-              <HiOutlineLogout className="mr-2 h-5 w-5" />
-              <span>Log out</span>
-            </button>
-          </div>
+      <div className="p-2 space-y-1">
+        <div className="flex items-center p-2 rounded-md hover:bg-zinc-800 cursor-pointer">
+          <PlusCircle className="w-5 h-5 mr-3 text-zinc-400" />
+          <span className="text-zinc-400">New chat</span>
+        </div>
+        <div className="flex items-center p-2 rounded-md hover:bg-zinc-800 cursor-pointer">
+          <FolderClosed className="w-5 h-5 mr-3 text-zinc-400" />
+          <span className="text-zinc-400">Projects</span>
+        </div>
+        <div className="flex items-center p-2 rounded-md hover:bg-zinc-800 cursor-pointer">
+          <MessageSquare className="w-5 h-5 mr-3 text-zinc-400" />
+          <span className="text-zinc-400">Chats</span>
         </div>
       </div>
-    </>
+
+      <div className="flex-1 overflow-y-auto">
+        <div className="px-4 py-2 text-xs text-zinc-500">Recents</div>
+        <div className="space-y-1">
+          {recentChats.map((chat, index) => (
+            <div
+              key={index}
+              className="px-4 py-2 text-sm text-zinc-400 hover:bg-zinc-800 cursor-pointer truncate"
+            >
+              {chat}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="p-3 border-t border-zinc-800 flex items-center">
+        <div className="w-8 h-8 rounded-md bg-zinc-700 flex items-center justify-center text-sm mr-3">
+          RS
+        </div>
+        <div className="flex-1">
+          <div className="text-sm">Ravi Shankar</div>
+          <div className="text-xs text-zinc-400">Professional plan</div>
+        </div>
+        <button onClick={() => setExpanded(!expanded)}>
+          {expanded ? (
+            <ChevronUp className="w-5 h-5 text-zinc-500" />
+          ) : (
+            <ChevronDown className="w-5 h-5 text-zinc-500" />
+          )}
+        </button>
+      </div>
+    </div>
   );
-};
+}
 
 export default Sidebar;
