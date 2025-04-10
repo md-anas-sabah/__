@@ -1,10 +1,18 @@
-import { PlusCircle, Menu, ArrowUp } from "lucide-react";
+import { PlusCircle, Menu, ArrowUp, Plus } from "lucide-react";
 import SVGComponent from "../assets/SVG";
 import Sidebar from "../components/Sidebar";
 import { useState } from "react";
+import { SlidersHorizontal } from "lucide-react";
 
 export default function ClaudeInterface() {
   const [isHovered, setIsHovered] = useState(false);
+  const [inputText, setInputText] = useState("");
+
+  const handleTextChange = (e) => {
+    setInputText(e.target.value);
+  };
+
+  const buttonBgColor = inputText.trim() ? "bg-[#D97757]" : "bg-[#7D4A38]";
 
   return (
     <div className="flex h-screen bg-[#262624] text-white overflow-hidden">
@@ -30,25 +38,29 @@ export default function ClaudeInterface() {
                 onMouseLeave={() => setIsHovered(false)}
               >
                 <textarea
-                  className="w-full bg-transparent outline-none resize-none text-zinc-300"
+                  className="w-full bg-transparent text-sm outline-none resize-none text-zinc-300"
                   placeholder="How can I help you today?"
-                  rows={1}
+                  rows={2}
+                  value={inputText}
+                  onChange={handleTextChange}
                 />
                 <div className="flex justify-between mt-3">
                   <div className="flex space-x-3">
-                    <button className="p-1.5 text-zinc-400 hover:text-zinc-200 transition-colors">
-                      <PlusCircle className="w-5 h-5" />
+                    <button className="p-2 text-zinc-400 hover:text-zinc-200 transition-colors  border border-[#464643] rounded-lg">
+                      <Plus className="w-[18px] h-[18px]" />
                     </button>
-                    <button className="p-1.5 text-zinc-400 hover:text-zinc-200 transition-colors">
-                      <Menu className="w-5 h-5" />
+                    <button className="p-2 text-zinc-400 hover:text-zinc-200 transition-colors border border-zinc-700 rounded-lg">
+                      <SlidersHorizontal className="w-[18px] h-[18px] transform rotate-180" />
                     </button>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <span className="text-sm text-zinc-400">
+                    <span className="text-sm text-[#FAF9F4] font-cardo font-thin">
                       Claude 3.7 Sonnet
                     </span>
-                    <button className="p-2 bg-zinc-700 rounded-md hover:bg-zinc-600 transition-colors">
-                      <ArrowUp className="w-5 h-5 text-zinc-300" />
+                    <button
+                      className={`p-2 bg-[#7D4A38] ${buttonBgColor}  rounded-md transition-colors`}
+                    >
+                      <ArrowUp className="w-[18px] h-[18px] text-zinc-300 " />
                     </button>
                   </div>
                 </div>
