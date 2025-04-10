@@ -6,14 +6,16 @@ export default function ClaudeInterface() {
   return (
     <div className="flex h-screen bg-[#262624] text-white overflow-hidden">
       <Sidebar />
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col -mt-40">
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center w-full max-w-4xl px-4">
             <div className="flex  items-center mb-14">
               <div className="text-amber-500">
                 <SVGComponent />
               </div>
-              <h1 className="text-4xl font-light -mb-5 ">Evening, Anas</h1>
+              <h1 className="text-4xl -mb-5 text-[#C2C0B6] font-cardo font-normal ">
+                How's it going, Anas?
+              </h1>
             </div>
 
             <div className="w-[80%] mx-auto">

@@ -32,6 +32,8 @@ export default {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
+        andada: ["Playfair Display", "serif"],
+        cardo: ["Cardo", "serif"],
       },
     },
   },

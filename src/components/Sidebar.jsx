@@ -67,10 +67,10 @@ function Sidebar() {
 
       <div className="p-3 border-t border-zinc-800 flex items-center">
         <div className="w-8 h-8 rounded-md bg-zinc-700 flex items-center justify-center text-sm mr-3">
-          RS
+          MS
         </div>
         <div className="flex-1">
-          <div className="text-sm">Ravi Shankar</div>
+          <div className="text-sm">Md Anas Sabah</div>
           <div className="text-xs text-zinc-400">Professional plan</div>
         </div>
         <button onClick={() => setExpanded(!expanded)}>
