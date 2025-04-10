@@ -1,8 +1,11 @@
 import { PlusCircle, Menu, ArrowUp } from "lucide-react";
 import SVGComponent from "../assets/SVG";
 import Sidebar from "../components/Sidebar";
+import { useState } from "react";
 
 export default function ClaudeInterface() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div className="flex h-screen bg-[#262624] text-white overflow-hidden">
       <Sidebar />
@@ -19,7 +22,13 @@ export default function ClaudeInterface() {
             </div>
 
             <div className="w-[80%] mx-auto">
-              <div className="bg-[#30302E] rounded-xl p-4 relative">
+              <div
+                className={`bg-[#30302E] rounded-xl p-4 relative border border-[#464643] cursor-text ${
+                  isHovered ? "border-gray-500" : "border-[#464643]"
+                }`}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
                 <textarea
                   className="w-full bg-transparent outline-none resize-none text-zinc-300"
                   placeholder="How can I help you today?"
